@@ -33,11 +33,10 @@ Pin-Priority: 1000
 ' | sudo tee /etc/apt/preferences.d/mozilla
 
 ## Disable auto installation of recommended and suggested packages
-sudo touch /etc/apt/apt.conf.d/99no-recommends
-sudo cat > /etc/apt/apt.conf.d/99no-recommends <<EOF
-APT::Install-Recommends "false";
-APT::Install-Suggests "false";
-EOF
+#sudo touch /etc/apt/apt.conf.d/99no-recommends
+#sudo cat > /etc/apt/apt.conf.d/99no-recommends <<EOF
+#APT::Install-Recommends "false";
+#APT::Install-Suggests "false";
 
 sudo apt clean; sudo apt autoclean; sudo apt update; sudo apt upgrade -y; sudo apt install -f; sudo apt autoremove -y
 
