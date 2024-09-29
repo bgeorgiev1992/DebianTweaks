@@ -37,6 +37,7 @@ Pin-Priority: 1000
 #sudo cat > /etc/apt/apt.conf.d/99no-recommends <<EOF
 #APT::Install-Recommends "false";
 #APT::Install-Suggests "false";
+#EOF
 
 sudo apt clean; sudo apt autoclean; sudo apt update; sudo apt upgrade -y; sudo apt install -f; sudo apt autoremove -y
 
