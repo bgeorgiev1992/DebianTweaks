@@ -1,2 +1,2 @@
 # DebianTweaks
-Debian Trixie Tweaks
+Debian Tweaks
