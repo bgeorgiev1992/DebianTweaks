@@ -7,16 +7,14 @@ fi
 
 sudo apt update; sudo apt install --yes curl wget apt-transport-https dirmngr
 
-sudo cp -fi /etc/apt/sources.list /etc/apt/sources.list.backup
-
 sudo cat > /etc/apt/sources.list <<EOF
-deb https://deb.debian.org/debian/ bookworm main contrib non-free non-free-firmware
-deb https://deb.debian.org/debian/ bookworm-updates main contrib non-free non-free-firmware
-deb https://deb.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware
-deb https://deb.debian.org/debian bookworm-backports main contrib non-free non-free-firmware
+deb https://deb.debian.org/debian/ trixie main contrib non-free non-free-firmware
+deb https://deb.debian.org/debian/ trixie-updates main contrib non-free non-free-firmware
+deb https://deb.debian.org/debian-security trixie-security main contrib non-free non-free-firmware
+deb https://deb.debian.org/debian trixie-backports main contrib non-free non-free-firmware
 EOF
 
-sudo apt clean; sudo apt autoclean; sudo apt update; sudo apt upgrade -t bookworm-backports -y; sudo apt install -f; sudo apt autoremove -y
+sudo apt clean; sudo apt autoclean; sudo apt update; sudo apt upgrade -y; sudo apt install -f; sudo apt autoremove -y
 
 ## Add Google Chrome repo
 curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/google-linux_signing_key.gpg > /dev/null
@@ -32,6 +30,11 @@ Pin: origin packages.mozilla.org
 Pin-Priority: 1000
 ' | sudo tee /etc/apt/preferences.d/mozilla
 
+## Add Nvidia repo
+wget https://developer.download.nvidia.com/compute/cuda/repos/debian13/x86_64/cuda-keyring_1.1-1_all.deb
+dpkg -i cuda-keyring_1.1-1_all.deb
+rm -rf cuda-keyring_1.1-1_all.deb
+
 ## Disable auto installation of recommended and suggested packages
 #sudo touch /etc/apt/apt.conf.d/99no-recommends
 #sudo cat > /etc/apt/apt.conf.d/99no-recommends <<EOF
@@ -39,6 +42,6 @@ Pin-Priority: 1000
 #APT::Install-Suggests "false";
 #EOF
 
-sudo apt clean; sudo apt autoclean; sudo apt update; sudo apt upgrade -t bookworm-backports -y; sudo apt install -f; sudo apt autoremove -y
+sudo apt clean; sudo apt autoclean; sudo apt update; sudo apt upgrade -y; sudo apt install -f; sudo apt autoremove -y
 
 exit 0
