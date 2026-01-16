@@ -30,11 +30,6 @@ Pin: origin packages.mozilla.org
 Pin-Priority: 1000
 ' | sudo tee /etc/apt/preferences.d/mozilla
 
-## Add Nvidia repo
-wget https://developer.download.nvidia.com/compute/cuda/repos/debian13/x86_64/cuda-keyring_1.1-1_all.deb
-dpkg -i cuda-keyring_1.1-1_all.deb
-rm -rf cuda-keyring_1.1-1_all.deb
-
 ## Disable auto installation of recommended and suggested packages
 #sudo touch /etc/apt/apt.conf.d/99no-recommends
 #sudo cat > /etc/apt/apt.conf.d/99no-recommends <<EOF
